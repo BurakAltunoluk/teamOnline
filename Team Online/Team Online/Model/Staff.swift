@@ -9,11 +9,9 @@ import Foundation
 import UIKit
 
 struct Staff {
-    var name: String
-    var surname: String
+    var fullName: String
     var title: String
-    var picture: UIImage
-    var age: Int
+    var dateOfBirth: Int
     var phoneNumber: Int
     var adress: String
 }

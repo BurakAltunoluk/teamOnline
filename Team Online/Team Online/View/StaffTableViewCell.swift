@@ -9,10 +9,10 @@ import UIKit
 
 class StaffTableViewCell: UITableViewCell {
 
-    @IBOutlet var stackView: UIStackView!
+   
     @IBOutlet var staffName: UILabel!
     @IBOutlet var staffTitle: UILabel!
-    @IBOutlet var staffImage: UIImageView!
+ 
     override func awakeFromNib() {
         super.awakeFromNib()
     }

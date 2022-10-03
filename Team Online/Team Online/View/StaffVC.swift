@@ -8,10 +8,10 @@
 import UIKit
 
 class StaffVC: UIViewController {
-    var testArray = ["Hami","Sami","Fehmi","Ladi"]
+    var testArray = [" Hami Sari"," Sami Eray"," Fehmi Duyar"," Ladi Tatlises"]
     var testTitle = ["Sales manager","Boss","Director","Technical"]
     var testHidden = [true,true,true,true]
-var a = true
+    
     @IBOutlet var tableView: UITableView!
     @IBAction func addNewStaff(_ sender: UIButton) {
         dismiss(animated: true)
@@ -32,15 +32,9 @@ extension StaffVC: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! StaffTableViewCell
         cell.staffName.text = testArray[indexPath.row]
         cell.staffTitle.text = testTitle[indexPath.row]
+     
         
-        
-        cell.stackView.isHidden = testHidden[indexPath.row]
-        
-        if testHidden[indexPath.row] == false {
-            tableView.rowHeight = 170
-        } else {
-            tableView.rowHeight = 90
-        }
+    
         return cell
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		602B9EAD28EA3DAC00E12BD1 /* StaffDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602B9EAC28EA3DAC00E12BD1 /* StaffDetailsVC.swift */; };
 		60896FE928E624AE00752442 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60896FE828E624AE00752442 /* AppDelegate.swift */; };
 		60896FEB28E624AE00752442 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60896FEA28E624AE00752442 /* SceneDelegate.swift */; };
 		60896FED28E624AE00752442 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60896FEC28E624AE00752442 /* MainVC.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		602B9EAC28EA3DAC00E12BD1 /* StaffDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffDetailsVC.swift; sourceTree = "<group>"; };
 		60896FE528E624AE00752442 /* Team Online.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Team Online.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60896FE828E624AE00752442 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60896FEA28E624AE00752442 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				60896FE828E624AE00752442 /* AppDelegate.swift */,
 				60896FEA28E624AE00752442 /* SceneDelegate.swift */,
 				60DD679628E8772A00C5CA99 /* StaffTableViewCell.swift */,
+				602B9EAC28EA3DAC00E12BD1 /* StaffDetailsVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				602B9EAD28EA3DAC00E12BD1 /* StaffDetailsVC.swift in Sources */,
 				60DD678F28E8498A00C5CA99 /* MainPageElement.swift in Sources */,
 				60896FED28E624AE00752442 /* MainVC.swift in Sources */,
 				60DD679528E8743A00C5CA99 /* Staff.swift in Sources */,
