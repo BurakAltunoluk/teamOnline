@@ -40,7 +40,6 @@ struct ElementListViewModel {
         
     }
     
-    
     func rowNumberSection() -> Int {
       return self.elementList.count
     }
