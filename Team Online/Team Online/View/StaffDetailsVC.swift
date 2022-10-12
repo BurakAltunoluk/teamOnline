@@ -39,11 +39,11 @@ class StaffDetailsVC: UIViewController {
             self.addressLabel.isEditable = true
         } else {
             
-            GetStaffData().editStaffData(key: "fullName", value: nameLabel.text!, id: staffID)
-            GetStaffData().editStaffData(key: "title", value: titleLabel.text!, id: staffID)
-            GetStaffData().editStaffData(key: "phoneNumber", value: phoneNumberLabel.text!, id: staffID)
-            GetStaffData().editStaffData(key: "dateOfBirth", value: dateOfBirthLabel.text!, id: staffID)
-            GetStaffData().editStaffData(key: "address", value: addressLabel.text!, id: staffID)
+            GetStaffData().editStaff(key: "fullName", value: nameLabel.text!, id: staffID)
+            GetStaffData().editStaff(key: "title", value: titleLabel.text!, id: staffID)
+            GetStaffData().editStaff(key: "phoneNumber", value: phoneNumberLabel.text!, id: staffID)
+            GetStaffData().editStaff(key: "dateOfBirth", value: dateOfBirthLabel.text!, id: staffID)
+            GetStaffData().editStaff(key: "address", value: addressLabel.text!, id: staffID)
             editButtonOutlet.setTitle("Edit", for: .normal)
             
              self.nameLabel.isEnabled = false
@@ -68,7 +68,7 @@ class StaffDetailsVC: UIViewController {
     
     func setup() {
         
-        GetStaffData().getStaffData(id: staffID) { data in
+        GetStaffData().getStaffDetails(id: staffID) { data in
             self.staffData = data
             self.nameLabel.text = self.staffData.fullName
             self.titleLabel.text = self.staffData.title
@@ -80,6 +80,11 @@ class StaffDetailsVC: UIViewController {
           
         
     }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toTasks" {
+            let destinationVC = segue.destination as! TasksAndPaymentsVC
+            destinationVC.staffID = self.staffID
+        }
+    }
 
 }

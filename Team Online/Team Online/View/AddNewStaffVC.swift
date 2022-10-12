@@ -9,6 +9,7 @@ import UIKit
 
 final class AddNewStaffVC: UIViewController {
 
+
     @IBOutlet private var fullNameText: UITextField!
     @IBOutlet private var titleText: UITextField!
     @IBOutlet private var dateOfBirthText: UITextField!

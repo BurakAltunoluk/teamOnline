@@ -8,8 +8,9 @@
 import UIKit
 
 final class MainVC: UIViewController {
-   private var elementListViewModel = ElementListViewModel()
-   @IBOutlet private var collectionView: UICollectionView!
+    
+    private var elementListViewModel = ElementListViewModel()
+    @IBOutlet private var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ extension MainVC: UICollectionViewDataSource {
         cell.cellImageView.frame = elementListViewModel.sizeOfPictureInCell(tableCell: cell)
         cell.cellImageView.image = elementListViewModel.elementAtIndex(indexPath.row).image
         cell.cellTitle.text = elementListViewModel.elementAtIndex(indexPath.row).title
-        
+        cell.layer.cornerRadius = 5
         return cell
     }
 }
@@ -42,5 +43,5 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
 extension MainVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: elementListViewModel.elementList[indexPath.row].title, sender: nil)
- }
+    }
 }

@@ -9,46 +9,53 @@ import UIKit
 
 
 final class StaffVC: UIViewController {
+  
     private var staffIDtoSend = ""
     private var allStaffName = [String]()
     private var allStaffTitle = [String]()
     private var allStaffId = [String]()
     @IBOutlet private var tableView: UITableView!
-    
+    @IBOutlet var backButtonOutlet: UIButton!
+    @IBOutlet private var addNewButtonOutlet: UIButton!
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.allStaffName = [String]()
-        self.allStaffTitle = [String]()
-        self.allStaffId = [String]()
         getData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addNewButtonOutlet.setTitle("", for: .normal)
+        addNewButtonOutlet.layer.cornerRadius = 3
+        backButtonOutlet.layer.cornerRadius = 3
+        tableView.layer.cornerRadius = 9
+        
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true)
     }
+    
     @IBAction func addNewStaff(_ sender: UIButton) {
     }
     
     func getData() {
        
-        GetStaffData().getAllStaffData { idData in
-            self.allStaffId.append(idData)
+        GetStaffData().getStaffNameAndTitle { idData in
+            self.allStaffId = idData
             self.tableView.reloadData()
         } staffTitle: { titleData in
-            self.allStaffTitle.append(titleData)
-            self.tableView.reloadData()
+            self.allStaffTitle = titleData
         } staffName: { nameData in
-            self.allStaffName.append(nameData)
-            self.tableView.reloadData()
-            
+            self.allStaffName = nameData
         }
-        
     }
     
+    private func resetAllData() {
+        self.allStaffName.removeAll()
+        self.allStaffTitle.removeAll()
+        self.allStaffId.removeAll()
+        self.tableView.reloadData()
+    }
 }
 
 extension StaffVC: UITableViewDataSource, UITableViewDelegate {
@@ -58,8 +65,10 @@ extension StaffVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! StaffTableViewCell
+        cell.layer.cornerRadius = 9
         cell.staffName.text = allStaffName[indexPath.row]
         cell.staffTitle.text = allStaffTitle[indexPath.row]
+       
         return cell
     }
     
@@ -74,21 +83,16 @@ extension StaffVC: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             
             GetStaffData().deleteStaff(id: allStaffId[indexPath.row])
-            allStaffId.remove(at: indexPath.row)
-            allStaffName.remove(at: indexPath.row)
-            allStaffTitle.remove(at: indexPath.row)
-            self.tableView.reloadData()
+            resetAllData()
+            getData()
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "toDetailsVC" {
             let destinationVC = segue.destination as! StaffDetailsVC
             destinationVC.staffID = self.staffIDtoSend
         }
-        
     }
-    
 }
 
