@@ -13,6 +13,7 @@ final class TasksAndPaymentsVC: UIViewController {
     var taskID = ""
     var tasksOfStaff = [StaffTaskModel]()
     
+    
     @IBOutlet private var infoLabel: UILabel!
     @IBOutlet private var tableView: UITableView!
 
@@ -24,6 +25,7 @@ final class TasksAndPaymentsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.layer.cornerRadius = 7
             }
     
     @IBAction private func addButtonPressed(_ sender: UIButton) {
@@ -50,6 +52,29 @@ final class TasksAndPaymentsVC: UIViewController {
         }
     }
     
+    func taskMenu() {
+        
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+
+        let doneButton = UIAlertAction(title: "Done", style: .default) { done in
+            GetStaffData().taskStatu(statu: "Done", taskID: self.taskID, staffID: self.staffID)
+            
+          
+        }
+        let SeenButton = UIAlertAction(title: "Seen", style: .default) { seen in
+            GetStaffData().taskStatu(statu: "Seen", taskID: self.taskID, staffID: self.staffID)
+            
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(doneButton)
+        alert.addAction(SeenButton)
+        alert.addAction(cancelButton)
+        
+        present(alert, animated: true)
+        self.tableView.reloadData()
+    }
+    
 }
 
 extension TasksAndPaymentsVC: UITableViewDelegate, UITableViewDataSource {
@@ -60,11 +85,23 @@ extension TasksAndPaymentsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TasksAndPaymentCell", for: indexPath) as! TasksAndPaymentCell
+        
+     
         cell.taskShopDetails.text = self.tasksOfStaff[indexPath.row].shopDetails
         cell.taskDetails.text = self.tasksOfStaff[indexPath.row].taskDetail
         cell.taskPayment.text = self.tasksOfStaff[indexPath.row].paymentDone
         cell.taskDate.text = self.tasksOfStaff[indexPath.row].date
         cell.taskPayment.text = "£\(self.tasksOfStaff[indexPath.row].paymentDetail)"
+        print(tasksOfStaff[indexPath.row].statu)
+        
+        if self.tasksOfStaff[indexPath.row].statu == "Done" {
+            cell.contentView.backgroundColor = .green
+            
+            
+        } else if tasksOfStaff[indexPath.row].statu == "Seen" {
+            cell.contentView.backgroundColor = .yellow
+        }
+        
         return cell
     }
     
@@ -78,5 +115,16 @@ extension TasksAndPaymentsVC: UITableViewDelegate, UITableViewDataSource {
             self.tableView.reloadData()
             
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    
+        self.taskID = tasksOfStaff[indexPath.row].taskID
+        
+       taskMenu()
+    
+        
+        
     }
 }

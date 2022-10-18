@@ -33,11 +33,12 @@ struct ElementListViewModel {
     }
     
     mutating func setup() {
+        
         addElementListArray(title: "Staff")
         addElementListArray(title: "Jobs")
         addElementListArray(title: "Customers")
         addElementListArray(title: "Payments")
-        
+        addElementListArray(title: "Products")
     }
     
     func rowNumberSection() -> Int {

@@ -60,7 +60,7 @@ struct GetStaffData {
     
     func addStaffTask(id: String, date: String, done: String, paymentDone: String, shopDetails: String, staffOk: String, taskDetail: String, paymentDetails: String) {
         
-        let newTask = ["date":date, "done":done, "paymentDone":paymentDone, "shopDetails": shopDetails, "staffOk": staffOk, "taskDetails": taskDetail, "paymentDetails": paymentDetails]
+        let newTask = ["date":date, "done":done, "paymentDone":paymentDone, "shopDetails": shopDetails, "staffOk": staffOk, "taskDetails": taskDetail, "paymentDetails": paymentDetails, "statu": "nil"]
         
         fireStore.collection("Edell Coffee").document("admin").collection("staff").document(id).collection("tasks").addDocument(data: newTask) { error in
             print(error?.localizedDescription ?? "Task Add Error")
@@ -83,11 +83,12 @@ struct GetStaffData {
 
         
         fireStore.collection("Edell Coffee").document("admin").collection("staff").document(id).collection("tasks").addSnapshotListener { datam, error in
-            
+            tasksArray = []
             if datam != nil {
                 
                 for i in datam!.documents {
-                    var a = StaffTaskModel(taskID: "", date: "", done: "", paymentDone: "", shopDetails: "", staffOk: "", taskDetail: "", paymentDetail: "")
+                   
+                    var a = StaffTaskModel(taskID: "", date: "", done: "", paymentDone: "", shopDetails: "", staffOk: "", taskDetail: "", paymentDetail: "", statu: "")
                     
                     
                     a.taskID = i.documentID
@@ -98,7 +99,7 @@ struct GetStaffData {
                     a.taskDetail = i.get("taskDetails") as? String ?? ""
                     a.shopDetails = i.get("shopDetails") as? String ?? ""
                     a.paymentDetail = i.get("paymentDetails") as? String ?? ""
-                    
+                    a.statu = i.get("statu") as? String ?? ""
                     
                     tasksArray.append(a)
                     
@@ -112,6 +113,14 @@ struct GetStaffData {
         
         fireStore.collection("Edell Coffee").document("admin").collection("staff").document(staffID).collection("tasks").document(taskID).delete()
         
+    }
+    
+    func taskStatu(statu: String, taskID : String, staffID: String) {
+        let data = ["statu" : statu]
+        fireStore.collection("Edell Coffee").document("admin").collection("staff").document(staffID).collection("tasks").document(taskID).setData(data, merge: true) { error in
+            
+        }
+
     }
 }
 

@@ -9,6 +9,7 @@ import UIKit
 
 class CustomersVC: UIViewController {
     
+    var sendInfoToNewTask = 0
     @IBOutlet var searchBar: UISearchBar!
     private var customersArray = [CustomerModel]()
     @IBOutlet var tableView: UITableView!
@@ -41,14 +42,11 @@ class CustomersVC: UIViewController {
         CustomersData().getAllCustomersData { datam in
             
                 self.customersArray = datam
-                self.tableView.reloadData()
+                
             self.filteredData = self.customersArray
-            
+            self.tableView.reloadData()
         }
-        
     }
-    
-    
 }
 
 
@@ -75,6 +73,32 @@ extension CustomersVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if sendInfoToNewTask == 1 {
+           
+            shopNamePass = filteredData[indexPath.row].shopName
+            postCodePass = filteredData[indexPath.row].postCode
+          
+               dismiss(animated: true)
+           
+        
+      
+            
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            CustomersData().deleteCustomer(customerID: filteredData[indexPath.row].customerID)
+            filteredData.remove(at: indexPath.row)
+            
+            self.tableView.reloadData()
+            
+        }
+        
         
     }
     

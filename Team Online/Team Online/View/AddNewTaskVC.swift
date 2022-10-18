@@ -11,19 +11,48 @@ import UIKit
 class AddNewTaskVC: UIViewController {
     
     var staffID = ""
-
     @IBOutlet var taskDetailsText: UITextView!
     @IBOutlet var totalAmountText: UITextField!
     @IBOutlet var postCodeText: UITextField!
     @IBOutlet var shopNameText: UITextField!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if choosedProduct != "" {
+            taskDetailsText.text = "\(taskDetailsText.text ?? "")  \n  \(choosedProduct)   "
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+    }
+    
+    @IBAction func addProductPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "toProducts", sender: nil)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if shopNamePass != "" {
+        
+            
+            self.shopNameText.text = shopNamePass
+            self.postCodeText.text = postCodePass
+            shopNamePass = ""
+            postCodePass = ""
+            
+           
+         
+        }
         
     }
     
     @IBAction func searchButtonPressed(_ sender: UIButton) {
-        blurEffect()
-    
+       
+    performSegue(withIdentifier: "getCustomerInfo", sender: nil)
         
     }
     
@@ -61,6 +90,20 @@ class AddNewTaskVC: UIViewController {
           }
       }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "getCustomerInfo" {
+            let destinationVC = segue.destination as! CustomersVC
+            destinationVC.sendInfoToNewTask = 1
+        }
+        
+        if segue.identifier == "toProducts" {
+            
+            productSign = "1"
+            
+        }
+        
+    }
+    
   
-
 }
