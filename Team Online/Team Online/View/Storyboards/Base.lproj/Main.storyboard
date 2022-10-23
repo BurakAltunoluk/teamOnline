@@ -945,7 +945,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="£ Total Amount " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="POY-Sr-DJW">
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="£ Total Amount " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="POY-Sr-DJW">
                                 <rect key="frame" x="50" y="280.5" width="314" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="wjU-aE-guc"/>
@@ -1086,7 +1086,7 @@
                         <outlet property="taskDetailsText" destination="sKM-bz-bbl" id="ZFa-T6-eXp"/>
                         <outlet property="totalAmountText" destination="POY-Sr-DJW" id="Lkh-P4-t5L"/>
                         <segue destination="OEb-bi-og4" kind="presentation" identifier="getCustomerInfo" modalPresentationStyle="fullScreen" id="sA8-Jq-eb5"/>
-                        <segue destination="2Cp-9w-HnA" kind="presentation" identifier="toProducts" id="8z9-4J-Itx"/>
+                        <segue destination="2Cp-9w-HnA" kind="presentation" identifier="toProducts" modalPresentationStyle="fullScreen" id="8z9-4J-Itx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IiV-ka-mIB" sceneMemberID="firstResponder"/>
@@ -1468,7 +1468,7 @@
             <objects>
                 <viewController id="2Cp-9w-HnA" customClass="ProductsVC" customModule="Team_Online" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="naY-hg-Qv4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Online" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yj9-m8-Zbm">
@@ -1489,7 +1489,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0JP-2x-jWJ">
-                                <rect key="frame" x="15" y="208" width="384" height="551"/>
+                                <rect key="frame" x="15" y="208" width="384" height="605"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NYk-vI-UGB">
                                     <size key="itemSize" width="194" height="198"/>
@@ -1533,7 +1533,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Burak altunoluk" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7j-yZ-Tqn">
-                                <rect key="frame" x="20" y="784" width="374" height="28"/>
+                                <rect key="frame" x="20" y="838" width="374" height="28"/>
                                 <fontDescription key="fontDescription" name="PartyLetPlain" family="Party LET" pointSize="24"/>
                                 <color key="textColor" red="1" green="0.075270113149999998" blue="0.055509181380000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>

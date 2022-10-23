@@ -10,8 +10,8 @@ import Foundation
     var shopNamePass = ""
     var postCodePass = ""
     
-    var productSign = ""
+   // var productSign = ""
     var choosedProduct = ""
-    var choosedProductPrice = ""
+    var choosedProductPrice = 0
     
     

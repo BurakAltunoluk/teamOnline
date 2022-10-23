@@ -9,7 +9,7 @@ import UIKit
 
 final class ProductsDetailsVC: UIViewController {
     @IBOutlet private var tableView: UITableView!
-
+    var productSign = 0
     
     var choosedType = ""
     var products = [ProductModel]()
@@ -77,11 +77,11 @@ extension ProductsDetailsVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        if productSign == "1" {
+        if productSign == 1 {
             choosedProduct = products[indexPath.row].nameOfProduct
-            choosedProductPrice = products[indexPath.row].priceOfProduct
+            choosedProductPrice = Int(products[indexPath.row].priceOfProduct)!
             dismiss(animated: true)
-            dismiss(animated: true)
+            
         }
         
         

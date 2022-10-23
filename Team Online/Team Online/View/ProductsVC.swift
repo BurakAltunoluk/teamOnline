@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class ProductsVC: UIViewController {
-    
+    var productSign = 0
     var typeArray = [String]()
     var choosedType = ""
     var productArray = [ProductModel]()
@@ -28,7 +28,12 @@ class ProductsVC: UIViewController {
         collectionView.reloadData()
 
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if productSign == 2 {
+            dismiss(animated: true)
+        }
+    }
     @IBAction func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true)
         
@@ -58,6 +63,14 @@ class ProductsVC: UIViewController {
             
             let destinationVC = segue.destination as! ProductsDetailsVC
             destinationVC.choosedType = choosedType
+            
+        }
+        
+        if segue.identifier == "toDetails" {
+            if productSign == 1 {
+                let destination1 = segue.destination as! ProductsDetailsVC
+                destination1.productSign = 1
+            }
             
         }
     }
@@ -127,7 +140,7 @@ extension ProductsVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         self.choosedType = typeArray[indexPath.row]
         
         performSegue(withIdentifier: "toDetails", sender: nil)
-        
+        self.productSign = 2
         
         }
 }

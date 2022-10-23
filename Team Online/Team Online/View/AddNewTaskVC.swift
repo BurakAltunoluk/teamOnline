@@ -9,19 +9,37 @@ import UIKit
 
 
 class AddNewTaskVC: UIViewController {
-    
+    var total = 0
     var staffID = ""
     @IBOutlet var taskDetailsText: UITextView!
     @IBOutlet var totalAmountText: UITextField!
     @IBOutlet var postCodeText: UITextField!
     @IBOutlet var shopNameText: UITextField!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         if choosedProduct != "" {
             taskDetailsText.text = "\(taskDetailsText.text ?? "")  \n  \(choosedProduct)   "
+            totalAmountText.text = "£ \(total + choosedProductPrice)"
+            total += choosedProductPrice
+            choosedProduct = ""
+            choosedProductPrice = 0
+        }
+        if shopNamePass != "" {
+        
+            self.shopNameText.text = shopNamePass
+            self.postCodeText.text = postCodePass
+            shopNamePass = ""
+            postCodePass = ""
             
         }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+      
     }
     
     override func viewDidLoad() {
@@ -33,28 +51,30 @@ class AddNewTaskVC: UIViewController {
     @IBAction func addProductPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "toProducts", sender: nil)
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if shopNamePass != "" {
-        
-            
-            self.shopNameText.text = shopNamePass
-            self.postCodeText.text = postCodePass
-            shopNamePass = ""
-            postCodePass = ""
-            
-           
-         
-        }
-        
-    }
     
     @IBAction func searchButtonPressed(_ sender: UIButton) {
        
     performSegue(withIdentifier: "getCustomerInfo", sender: nil)
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "getCustomerInfo" {
+            let destinationVC = segue.destination as! CustomersVC
+            
+            destinationVC.sendInfoToNewTask = 1
+        }
+        
+        if segue.identifier == "toProducts" {
+            
+            let destinaoln1 = segue.destination as! ProductsVC
+            destinaoln1.productSign = 1
+            
+        }
+        
+    }
+ 
     
 
     
@@ -90,20 +110,7 @@ class AddNewTaskVC: UIViewController {
           }
       }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "getCustomerInfo" {
-            let destinationVC = segue.destination as! CustomersVC
-            destinationVC.sendInfoToNewTask = 1
-        }
-        
-        if segue.identifier == "toProducts" {
-            
-            productSign = "1"
-            
-        }
-        
-    }
+
     
   
 }

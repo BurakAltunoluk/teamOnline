@@ -21,6 +21,8 @@ final class TasksAndPaymentsVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setup()
+        print("evet")
+       
     }
 
     override func viewDidLoad() {
@@ -38,8 +40,10 @@ final class TasksAndPaymentsVC: UIViewController {
     }
     
     func setup() {
+        self.tasksOfStaff = [StaffTaskModel]()
+        
         GetStaffData().getStaffTasks(id: staffID) { datam in
-          
+            
             self.tasksOfStaff = datam
             self.tableView.reloadData()
         }
@@ -100,6 +104,9 @@ extension TasksAndPaymentsVC: UITableViewDelegate, UITableViewDataSource {
             
         } else if tasksOfStaff[indexPath.row].statu == "Seen" {
             cell.contentView.backgroundColor = .yellow
+        } else {
+            
+            cell.contentView.backgroundColor = .red
         }
         
         return cell
